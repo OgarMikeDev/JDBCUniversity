@@ -37,10 +37,22 @@ public class Main {
                 Teacher.addTeacher(teacher);
             }
 
+            resultSet = statement.executeQuery("SELECT * FROM students");
+            while (resultSet.next()) {
+                Student student = new Student();
+                student.setId(resultSet.getInt("id"));
+                student.setName(resultSet.getString("name"));
+                student.setAge(resultSet.getInt("age"));
+                student.setRegistrationDate(resultSet.getDate("registration_date"));
+                Student.addStudent(student);
+            }
+
             System.out.println("Все курсы:");
             Course.getListAllCourses();
             System.out.println("Все учителя:");
             Teacher.getListAllTeachers();
+            System.out.println("Все студенты:");
+            Student.getListAllStudents();
 
             resultSet.close();
             statement.close();
