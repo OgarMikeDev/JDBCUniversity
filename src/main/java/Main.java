@@ -12,6 +12,9 @@ public class Main {
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
+            statement.execute(
+                    "UPDATE Courses SET name='Java-разработчик с 0 до PRO' " +
+                    "WHERE id=3");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM courses");
             while (resultSet.next()) {
                 Course currentCourse = new Course();
