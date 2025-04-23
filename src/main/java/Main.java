@@ -12,12 +12,27 @@ public class Main {
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
+            //Изменение названия курса с индексом 3
             statement.execute(
-                    "UPDATE Courses SET name='Java-разработчик с 0 до PRO' " +
+                    "UPDATE Courses SET name='Java-разработчик с 0 до PRO(Professional)' " +
                     "WHERE id=3");
+            //Создание записи для учителя с индексом 51
             statement.execute(
                     "INSERT INTO Teachers (id, name, salary, age) " +
                             "VALUES (51, 'Кунжут', 10000, 101)");
+            //Создание записи для курса с индексом 47
+            statement.execute(
+                    "INSERT INTO Courses " +
+                            "(id, name, duration, " +
+                            "type, description, teacher_id, " +
+                            "students_count, price, price_per_hour) " +
+                            "VALUES " +
+                            "(47, 'Продажа курсов по Java', 20, " +
+                            "'MARKETING', 'Курс, кот-й научит Вас продавать курсы по Java', 1," +
+                            "100, 100000, 10000)");
+            //Удаление учителя с индексом 51
+            statement.execute(
+                    "DELETE FROM Teachers WHERE id=51");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM courses");
             while (resultSet.next()) {
                 Course currentCourse = new Course();
