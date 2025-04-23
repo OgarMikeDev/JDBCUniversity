@@ -15,6 +15,9 @@ public class Main {
             statement.execute(
                     "UPDATE Courses SET name='Java-разработчик с 0 до PRO' " +
                     "WHERE id=3");
+            statement.execute(
+                    "INSERT INTO Teachers (id, name, salary, age) " +
+                            "VALUES (51, 'Кунжут', 10000, 101)");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM courses");
             while (resultSet.next()) {
                 Course currentCourse = new Course();
